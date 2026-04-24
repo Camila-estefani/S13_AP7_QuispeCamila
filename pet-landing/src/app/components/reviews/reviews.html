@@ -1,0 +1,24 @@
+<section id="reviews" class="reviews">
+  <div class="reviews-container">
+    <h2>Lo que dicen nuestros clientes</h2>
+    <p class="subtitle">Reseñas de clientes satisfechos con nuestros servicios</p>
+
+    <div class="reviews-grid">
+      <div *ngFor="let review of reviews; let i = index" class="review-card" [style.animation-delay]="i * 0.1 + 's'">
+        <div class="review-header">
+          <img [src]="review.image" [alt]="review.name" class="reviewer-avatar" />
+          <div class="reviewer-info">
+            <h3>{{ review.name }}</h3>
+            <p class="pet-name">{{ review.pet }}</p>
+          </div>
+        </div>
+
+        <div class="rating">
+          <span *ngFor="let star of [1,2,3,4,5]" [class.filled]="star <= review.rating" class="star">★</span>
+        </div>
+
+        <p class="review-text">"{{ review.text }}"</p>
+      </div>
+    </div>
+  </div>
+</section>

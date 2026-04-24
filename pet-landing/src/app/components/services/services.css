@@ -1,0 +1,63 @@
+.services {
+  padding: 2rem 2rem 4rem;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 0.6rem;
+  color: #7c3aed;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.15rem;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: linear-gradient(150deg, #ffffff 0%, #faf5ff 100%);
+  border: 1px solid #eadcff;
+  border-radius: 18px;
+  padding: 1.2rem;
+  box-shadow: 0 12px 24px rgba(124, 58, 237, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 30px rgba(124, 58, 237, 0.17);
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+.service-card h3 {
+  margin: 0.5rem 0;
+  color: #6d28d9;
+}
+
+.service-card p {
+  color: #475569;
+  line-height: 1.5;
+}
+
+.price {
+  display: inline-block;
+  margin-top: 0.8rem;
+  background: #c4b5fd;
+  color: #4c1d95;
+  font-weight: 700;
+  border: 1px solid #a78bfa;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.84rem;
+}

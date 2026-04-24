@@ -1,0 +1,14 @@
+<section id="servicios" class="services">
+  <h2>Nuestros servicios</h2>
+  <p class="section-subtitle">Planes pensados para bienestar, salud y felicidad.</p>
+  <div class="service-grid">
+    @for (service of services; track service.title) {
+      <article class="service-card">
+        <span class="icon">{{ service.icon }}</span>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+        <span class="price">{{ service.price }}</span>
+      </article>
+    }
+  </div>
+</section>

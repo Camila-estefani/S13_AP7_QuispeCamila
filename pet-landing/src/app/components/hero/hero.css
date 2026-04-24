@@ -1,0 +1,121 @@
+.hero {
+  padding: 5.5rem 2rem 4rem;
+  background: linear-gradient(140deg, #fce7f3 0%, #e0e7ff 55%, #dbeafe 100%);
+}
+
+.hero-content {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(196, 181, 253, 0.55);
+  border-radius: 26px;
+  padding: 2rem;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 20px 35px rgba(99, 102, 241, 0.12);
+}
+
+.hero-text {
+  animation: fadeInUp 0.6s ease both;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0.75rem 0 1rem;
+  color: #4c1d95;
+}
+
+p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.eyebrow {
+  color: #a21caf;
+  text-transform: uppercase;
+  letter-spacing: 1.6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+button {
+  margin-top: 1.2rem;
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.3rem;
+  background: linear-gradient(130deg, #f9a8d4 0%, #c4b5fd 100%);
+  color: #581c87;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(168, 85, 247, 0.25);
+}
+
+.hero-message {
+  margin-top: 0.75rem;
+  font-weight: 700;
+  color: #7c3aed;
+}
+
+.hero-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  animation: floatIn 0.8s ease both;
+}
+
+.hero-images img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 12px 24px rgba(99, 102, 241, 0.18);
+  transition: transform 0.25s ease;
+}
+
+.hero-images img:hover {
+  transform: scale(1.03);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-images img {
+    height: 180px;
+  }
+}

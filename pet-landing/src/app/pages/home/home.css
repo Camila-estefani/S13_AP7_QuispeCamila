@@ -1,0 +1,352 @@
+.home-cta {
+  padding: 0 2rem 3.5rem;
+}
+
+.cta-card {
+  max-width: 950px;
+  margin: 0 auto;
+  background: linear-gradient(120deg, #ffffff 0%, #f5f3ff 100%);
+  color: #475569;
+  border: 1px solid #ddd6fe;
+  border-radius: 22px;
+  padding: 2rem;
+  box-shadow: 0 16px 30px rgba(124, 58, 237, 0.12);
+  animation: fadeIn 0.7s ease both;
+}
+
+.badge {
+  display: inline-block;
+  background: #fce7f3;
+  color: #9d174d;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+h2 {
+  margin: 0.8rem 0;
+  color: #6d28d9;
+}
+
+.feature-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.9rem;
+}
+
+.feature-row span {
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: #ede9fe;
+  color: #5b21b6;
+  font-size: 0.85rem;
+}
+
+.cta-actions {
+  margin-top: 1.2rem;
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.cta-actions a {
+  text-decoration: none;
+  background: #c4b5fd;
+  color: #4c1d95;
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  border-radius: 10px;
+  transition: transform 0.2s ease;
+}
+
+.cta-actions a:hover {
+  transform: translateY(-2px);
+}
+
+.cta-actions .secondary {
+  background: #ffffff;
+  color: #6d28d9;
+  border: 1px solid #c4b5fd;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pet-shop {
+  padding: 1rem 2rem 3.5rem;
+}
+
+.pet-shop h2 {
+  text-align: center;
+  color: #7e22ce;
+  margin-bottom: 0.5rem;
+  animation: slideInDown 0.6s ease;
+}
+
+.shop-subtitle {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 1.4rem;
+  animation: slideInUp 0.6s ease 0.1s both;
+}
+
+.shop-grid {
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.shop-card {
+  background: linear-gradient(140deg, #ffffff 0%, #fdf4ff 100%);
+  border: 1px solid #f5d0fe;
+  border-radius: 16px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(168, 85, 247, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: slideInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.shop-card:nth-child(1) { animation-delay: 0.2s; }
+.shop-card:nth-child(2) { animation-delay: 0.3s; }
+.shop-card:nth-child(3) { animation-delay: 0.4s; }
+.shop-card:nth-child(4) { animation-delay: 0.5s; }
+
+.shop-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(168, 85, 247, 0.2);
+}
+
+.shop-emoji {
+  font-size: 1.7rem;
+}
+
+.shop-card h3 {
+  margin: 0.55rem 0 0.3rem;
+  color: #6d28d9;
+}
+
+.shop-card p {
+  margin: 0;
+  color: #9d174d;
+  font-weight: 700;
+}
+
+.shop-cta {
+  text-align: center;
+  margin-top: 2rem;
+  animation: fadeIn 0.8s ease 0.6s both;
+}
+
+.btn-shop {
+  display: inline-block;
+  background: linear-gradient(120deg, #a855f7 0%, #7c3aed 100%);
+  color: white;
+  padding: 0.9rem 2rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 10px 24px rgba(168, 85, 247, 0.3);
+}
+
+.btn-shop:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(168, 85, 247, 0.4);
+}
+
+.btn-shop:active {
+  transform: translateY(-2px);
+}
+
+.reviews-section {
+  padding: 0 2rem 3.5rem;
+}
+
+.reviews-header {
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.reviews-text {
+  flex: 1;
+  animation: fadeInLeft 0.6s ease;
+}
+
+.reviews-section h2 {
+  text-align: left;
+  color: #7e22ce;
+  margin-bottom: 0.5rem;
+}
+
+.reviews-subtitle {
+  color: #6b7280;
+  margin-bottom: 1rem;
+}
+
+.btn-reviews {
+  display: inline-block;
+  background: linear-gradient(120deg, #f9a8d4 0%, #c4b5fd 100%);
+  color: #581c87;
+  padding: 0.8rem 1.8rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(168, 85, 247, 0.2);
+}
+
+.btn-reviews:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(168, 85, 247, 0.3);
+}
+
+.reviews-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+}
+
+.review-card {
+  overflow: hidden;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #ede9fe;
+  box-shadow: 0 10px 20px rgba(91, 33, 182, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+.review-card:nth-child(1) { animation-delay: 0.1s; }
+.review-card:nth-child(2) { animation-delay: 0.2s; }
+.review-card:nth-child(3) { animation-delay: 0.3s; }
+.review-card:nth-child(4) { animation-delay: 0.4s; }
+.review-card:nth-child(5) { animation-delay: 0.5s; }
+.review-card:nth-child(6) { animation-delay: 0.6s; }
+
+.review-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 32px rgba(91, 33, 182, 0.15);
+}
+
+.review-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+.review-content {
+  padding: 0.8rem;
+}
+
+.review-content h3 {
+  margin: 0 0 0.35rem;
+  color: #6d28d9;
+  font-size: 0.97rem;
+}
+
+.review-content p {
+  margin: 0;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .pet-shop {
+    padding: 1rem 1rem 2.5rem;
+  }
+
+  .shop-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.7rem;
+  }
+
+  .btn-shop {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .reviews-header {
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+
+  .reviews-section h2 {
+    text-align: center;
+  }
+
+  .btn-reviews {
+    display: block;
+    text-align: center;
+  }
+
+  .reviews-grid {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0.8rem;
+  }
+}

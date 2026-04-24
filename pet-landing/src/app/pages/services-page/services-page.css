@@ -1,0 +1,15 @@
+.page-hero {
+  padding: 3rem 2rem 1.5rem;
+  text-align: center;
+}
+
+.page-hero h1 {
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+}
+
+.page-hero p {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #475569;
+}

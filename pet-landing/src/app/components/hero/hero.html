@@ -1,0 +1,39 @@
+<section id="hero" class="hero">
+  <div class="hero-content glass">
+    <div class="hero-text">
+      <p class="eyebrow">Centro integral para mascotas</p>
+      <h1>Tu mascota feliz, activa y bien cuidada todos los dias</h1>
+      <p>
+        Transformamos su rutina con salud preventiva, grooming premium y
+        entrenamiento positivo en un mismo lugar.
+      </p>
+      <div class="hero-actions">
+        <button type="button" (click)="showWelcomeMessage()">Descubrir planes</button>
+      </div>
+      @if (message) {
+        <p class="hero-message">{{ message }}</p>
+      }
+    </div>
+    <div class="hero-images">
+      <img
+        src="https://i.pinimg.com/736x/04/5e/7b/045e7b13e286c80c820e72e4da99fa73.jpg"
+        alt="Perrito feliz"
+      />
+      <img
+        src="https://i.pinimg.com/736x/a4/6f/1b/a46f1b1fa08faa641b7c54c32a94eb01.jpg"
+        alt="gatito feliz"
+      />
+
+      <img
+        src="https://i.pinimg.com/736x/7b/6e/fa/7b6efa858fd7f47de154291746deb069.jpg"
+        alt="gatito feliz"
+      />
+
+      
+      <img
+        src="https://i.pinimg.com/736x/16/49/49/16494954bbaefb8bb1f4a03551ffff97.jpg"
+        alt="conejito feliz"
+      />
+    </div>
+  </div>
+</section>

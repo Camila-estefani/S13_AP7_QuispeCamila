@@ -1,0 +1,27 @@
+<section id="ropa" class="ropa">
+  <div class="ropa-container">
+    <h2>Colección de Ropa para Mascotas</h2>
+    <p class="subtitle">Diseños cómodos y adorables para tu compañero peludo</p>
+
+    <div class="ropa-grid">
+      @for (product of products; track product.id; let i = $index) {
+        <div class="ropa-card">
+          <div class="ropa-image">
+            <img [src]="product.image" [alt]="product.name" />
+            @if (product.badge) {
+              <span class="badge">{{ product.badge }}</span>
+            }
+          </div>
+          <div class="ropa-info">
+            <h3>{{ product.name }}</h3>
+            <p class="description">{{ product.description }}</p>
+            <div class="price-section">
+              <span class="price">${{ product.price }}</span>
+              <span class="catalog-tag">Solo catálogo</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

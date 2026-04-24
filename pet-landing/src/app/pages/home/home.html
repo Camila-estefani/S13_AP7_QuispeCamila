@@ -1,0 +1,61 @@
+<app-hero></app-hero>
+
+<section class="home-cta">
+  <div class="cta-card">
+    <p class="badge">Plan premium pastel</p>
+    <h2>Un cuidado completo en una sola membresia</h2>
+    <p>
+      Incluye consultas prioritarias, peluqueria mensual y seguimiento de salud
+      por WhatsApp.
+    </p>
+    <div class="feature-row">
+      <span>🐶 Guarderia segura</span>
+      <span>🐱 Grooming suave</span>
+      <span>💬 Soporte diario</span>
+    </div>
+    <div class="cta-actions">
+      <a routerLink="/servicios">Ver servicios</a>
+      <a class="secondary" routerLink="/contacto">Solicitar evaluacion</a>
+    </div>
+  </div>
+</section>
+
+<section class="pet-shop">
+  <h2>Ropita y accesorios para mascotas</h2>
+  <p class="shop-subtitle">Todo lo que necesitas: ropita, collares y accesorios comodos.</p>
+  <div class="shop-grid">
+    @for (item of petShopItems; track item.name) {
+      <article class="shop-card">
+        <span class="shop-emoji">{{ item.emoji }}</span>
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.price }}</p>
+      </article>
+    }
+  </div>
+  <div class="shop-cta">
+    <a routerLink="/ropa" class="btn-shop">Ver colección completa →</a>
+  </div>
+</section>
+
+<app-benefits></app-benefits>
+
+<section class="reviews-section">
+  <div class="reviews-header">
+    <div class="reviews-text">
+      <h2>Reseñas de nuestra comunidad</h2>
+      <p class="reviews-subtitle">10 personas compartieron fotos de sus mascotas felices.</p>
+      <a routerLink="/reseñas" class="btn-reviews">Leer todas las reseñas →</a>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    @for (review of reviews; track review.name) {
+      <article class="review-card">
+        <img [src]="review.photo" [alt]="review.name" />
+        <div class="review-content">
+          <h3>{{ review.name }}</h3>
+          <p>"{{ review.message }}"</p>
+        </div>
+      </article>
+    }
+  </div>
+</section>
