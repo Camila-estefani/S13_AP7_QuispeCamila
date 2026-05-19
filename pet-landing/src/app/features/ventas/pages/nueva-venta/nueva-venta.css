@@ -1,0 +1,135 @@
+.ventas-container {
+  max-width: 960px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: Arial, sans-serif;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.page-header h1 { margin: 0; color: #333; }
+
+/* Alertas */
+.alert {
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.alert-error  { background: #fdecea; color: #c0392b; border: 1px solid #e74c3c; }
+.alert-success { background: #eafaf1; color: #1e8449; border: 1px solid #27ae60; }
+
+/* Tarjeta de formulario */
+.form-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.form-card h3 { margin-top: 0; color: #444; margin-bottom: 16px; }
+
+/* Campos */
+.field-group { display: flex; flex-direction: column; max-width: 420px; }
+.field-group label { font-weight: bold; margin-bottom: 4px; font-size: 14px; color: #555; }
+
+select, input {
+  padding: 9px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+}
+select:focus, input:focus { outline: none; border-color: #007bff; }
+.input-error { border-color: #dc3545 !important; }
+
+.error-msg { color: #dc3545; font-size: 12px; margin-top: 3px; }
+
+/* Tabla de productos */
+.tabla-productos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+.tabla-productos th {
+  background: #f2f2f2;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 13px;
+  border-bottom: 2px solid #ddd;
+}
+.tabla-productos td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  vertical-align: top;
+}
+.tabla-productos select { width: 100%; min-width: 200px; }
+.input-cantidad { width: 70px; text-align: center; }
+
+.text-center { text-align: center; }
+.text-right  { text-align: right; }
+
+.stock-badge {
+  display: inline-block;
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+.stock-low { background: #fff3e0; color: #e65100; }
+
+.subtotal { font-weight: bold; color: #1a5276; }
+
+/* Totales */
+tfoot td { padding: 12px; border-top: 2px solid #ddd; }
+.total-label { text-align: right; font-weight: bold; font-size: 15px; color: #333; }
+.total-value { text-align: right; font-weight: bold; font-size: 18px; color: #1a5276; }
+
+/* Botones */
+.btn-add-row {
+  background: #e8f4fd;
+  color: #1a73e8;
+  border: 1px dashed #1a73e8;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+.btn-add-row:hover { background: #d0e8fb; }
+
+.btn-remove {
+  background: transparent;
+  color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.btn-remove:disabled { opacity: 0.3; cursor: not-allowed; }
+
+.btn-group { display: flex; gap: 12px; align-items: center; margin-top: 8px; }
+
+button { padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-success  { background: #28a745; color: white; }
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+.btn-secondary:hover { background: #5a6268; }

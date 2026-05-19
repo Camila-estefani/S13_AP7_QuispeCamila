@@ -21,7 +21,7 @@ export class Home {
     {
       name: 'Lucia y Moka',
       message: 'Mi mascota esta feliz y su ropita le queda preciosa.',
-      photo: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=500&q=80'
+      photo: 'https://i.pinimg.com/736x/71/ec/17/71ec17e369f49bf86d43d1b63b461be7.jpg'
     },
     {
       name: 'Diego y Luna',

@@ -1,0 +1,122 @@
+<div class="ventas-container">
+  <div class="page-header">
+    <h1>🛒 Registrar Nueva Venta</h1>
+    <a routerLink="/ventas" class="btn-secondary">← Ver Listado</a>
+  </div>
+
+  <!-- Alertas -->
+  <div class="alert alert-error" *ngIf="errorMsg">{{ errorMsg }}</div>
+  <div class="alert alert-success" *ngIf="successMsg">{{ successMsg }}</div>
+
+  <form [formGroup]="ventaForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- Selección de cliente -->
+    <div class="form-card">
+      <h3>👤 Cliente</h3>
+      <div class="field-group">
+        <label for="clienteId">Seleccionar Cliente *</label>
+        <select
+          id="clienteId"
+          formControlName="clienteId"
+          [class.input-error]="ventaForm.get('clienteId')!.invalid && ventaForm.get('clienteId')!.touched">
+          <option value="">-- Selecciona un cliente --</option>
+          <option *ngFor="let c of clientes" [value]="c.id">{{ c.nombre }} ({{ c.email }})</option>
+        </select>
+        <span class="error-msg"
+          *ngIf="ventaForm.get('clienteId')!.invalid && ventaForm.get('clienteId')!.touched">
+          Debes seleccionar un cliente.
+        </span>
+      </div>
+    </div>
+
+    <!-- Tabla de productos -->
+    <div class="form-card">
+      <h3>📦 Productos</h3>
+
+      <table class="tabla-productos" formArrayName="detalles">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Stock</th>
+            <th>Precio Unit.</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let detalle of detalles.controls; let i = index" [formGroupName]="i">
+            <!-- Producto -->
+            <td>
+              <select
+                formControlName="productoId"
+                [class.input-error]="detalle.get('productoId')!.invalid && detalle.get('productoId')!.touched">
+                <option value="">-- Producto --</option>
+                <option *ngFor="let p of productos" [value]="p.id" [disabled]="p.stock === 0">
+                  {{ p.nombre }} {{ p.stock === 0 ? '(Sin stock)' : '' }}
+                </option>
+              </select>
+              <span class="error-msg" *ngIf="detalle.get('productoId')!.invalid && detalle.get('productoId')!.touched">
+                Selecciona un producto.
+              </span>
+            </td>
+            <!-- Stock disponible -->
+            <td class="text-center">
+              <span class="stock-badge" [class.stock-low]="(getProducto(detalle.get('productoId')!.value)?.stock ?? 0) <= 5">
+                {{ getProducto(detalle.get('productoId')!.value)?.stock ?? '—' }}
+              </span>
+            </td>
+            <!-- Precio -->
+            <td class="text-right">
+              {{ getProducto(detalle.get('productoId')!.value)?.precio != null
+                ? ('$' + getProducto(detalle.get('productoId')!.value)!.precio.toFixed(2))
+                : '—' }}
+            </td>
+            <!-- Cantidad -->
+            <td>
+              <input
+                type="number"
+                formControlName="cantidad"
+                min="1"
+                class="input-cantidad"
+                [class.input-error]="detalle.get('cantidad')!.invalid && detalle.get('cantidad')!.touched || !!validarStock(i)">
+              <span class="error-msg" *ngIf="detalle.get('cantidad')!.invalid && detalle.get('cantidad')!.touched">
+                Cantidad mínima: 1.
+              </span>
+              <span class="error-msg" *ngIf="validarStock(i)">{{ validarStock(i) }}</span>
+            </td>
+            <!-- Subtotal -->
+            <td class="text-right subtotal">
+              {{ getSubtotal(i) > 0 ? ('$' + getSubtotal(i).toFixed(2)) : '—' }}
+            </td>
+            <!-- Quitar -->
+            <td>
+              <button type="button" class="btn-remove" (click)="quitarProducto(i)"
+                [disabled]="detalles.length === 1" title="Quitar producto">✕</button>
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="4" class="total-label">TOTAL</td>
+            <td class="total-value">${{ getTotal().toFixed(2) }}</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <button type="button" class="btn-add-row" (click)="agregarProducto()">
+        + Agregar Producto
+      </button>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="btn-group">
+      <button type="submit" class="btn-success" [disabled]="cargando || ventaForm.invalid || hayErroresDeStock()">
+        {{ cargando ? 'Registrando...' : '💾 Registrar Venta' }}
+      </button>
+      <a routerLink="/ventas" class="btn-secondary">Cancelar</a>
+    </div>
+
+  </form>
+</div>

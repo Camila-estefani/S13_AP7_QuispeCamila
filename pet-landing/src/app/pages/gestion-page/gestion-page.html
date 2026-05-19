@@ -1,0 +1,121 @@
+<div class="gestion-container">
+  <h1>🐶 Gestión de Mascotas</h1>
+
+  <!-- FORMULARIO REACTIVO -->
+  <div class="form-card">
+    <h3>{{ idEditando ? '✏️ Editando Mascota' : '+ Registrar Nueva Mascota' }}</h3>
+
+    <form [formGroup]="mascotaForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- Nombre -->
+      <div class="field-group">
+        <label for="nombre">Nombre</label>
+        <input
+          id="nombre"
+          formControlName="nombre"
+          placeholder="Nombre de la mascota"
+          [class.input-error]="f['nombre'].invalid && f['nombre'].touched"
+          [class.input-valid]="f['nombre'].valid && f['nombre'].touched"
+        />
+        <span class="error-msg" *ngIf="f['nombre'].invalid && f['nombre'].touched">
+          <span *ngIf="f['nombre'].errors?.['required']">El nombre es obligatorio.</span>
+          <span *ngIf="f['nombre'].errors?.['minlength']">Mínimo 2 caracteres.</span>
+        </span>
+      </div>
+
+      <!-- Especie -->
+      <div class="field-group">
+        <label for="especie">Especie</label>
+        <input
+          id="especie"
+          formControlName="especie"
+          placeholder="Ej: Perro, Gato, Ave"
+          [class.input-error]="f['especie'].invalid && f['especie'].touched"
+          [class.input-valid]="f['especie'].valid && f['especie'].touched"
+        />
+        <span class="error-msg" *ngIf="f['especie'].invalid && f['especie'].touched">
+          <span *ngIf="f['especie'].errors?.['required']">La especie es obligatoria.</span>
+          <span *ngIf="f['especie'].errors?.['minlength']">Mínimo 2 caracteres.</span>
+        </span>
+      </div>
+
+      <!-- Edad -->
+      <div class="field-group">
+        <label for="edad">Edad (años)</label>
+        <input
+          id="edad"
+          type="number"
+          formControlName="edad"
+          placeholder="Edad"
+          [class.input-error]="f['edad'].invalid && f['edad'].touched"
+          [class.input-valid]="f['edad'].valid && f['edad'].touched"
+        />
+        <span class="error-msg" *ngIf="f['edad'].invalid && f['edad'].touched">
+          <span *ngIf="f['edad'].errors?.['required']">La edad es obligatoria.</span>
+          <span *ngIf="f['edad'].errors?.['min']">La edad no puede ser negativa.</span>
+        </span>
+      </div>
+
+      <!-- Dueño -->
+      <div class="field-group">
+        <label for="nombre_dueno">Nombre del Dueño</label>
+        <input
+          id="nombre_dueno"
+          formControlName="nombre_dueno"
+          placeholder="Nombre del dueño"
+          [class.input-error]="f['nombre_dueno'].invalid && f['nombre_dueno'].touched"
+          [class.input-valid]="f['nombre_dueno'].valid && f['nombre_dueno'].touched"
+        />
+        <span class="error-msg" *ngIf="f['nombre_dueno'].invalid && f['nombre_dueno'].touched">
+          <span *ngIf="f['nombre_dueno'].errors?.['required']">El nombre del dueño es obligatorio.</span>
+          <span *ngIf="f['nombre_dueno'].errors?.['minlength']">Mínimo 3 caracteres.</span>
+        </span>
+      </div>
+
+      <!-- Botones -->
+      <div class="btn-group">
+        <button
+          type="submit"
+          [disabled]="mascotaForm.invalid"
+          [ngClass]="idEditando ? 'btn-warning' : 'btn-success'">
+          {{ idEditando ? 'Actualizar Mascota' : 'Guardar Mascota' }}
+        </button>
+        <button type="button" class="btn-secondary" *ngIf="idEditando" (click)="resetForm()">
+          Cancelar
+        </button>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- TABLA -->
+  <table class="tabla-mascotas">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Especie</th>
+        <th>Edad</th>
+        <th>Dueño</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let m of listaMascotas">
+        <td>{{ m.id }}</td>
+        <td>{{ m.nombre }}</td>
+        <td>{{ m.especie }}</td>
+        <td>{{ m.edad }} años</td>
+        <td>{{ m.nombre_dueno }}</td>
+        <td class="acciones">
+          <button class="btn-edit" (click)="prepararEdicion(m)">Editar</button>
+          <button class="btn-delete" (click)="borrar(m.id)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="empty-msg" *ngIf="listaMascotas.length === 0">
+    No hay mascotas registradas o el backend está apagado.
+  </p>
+</div>

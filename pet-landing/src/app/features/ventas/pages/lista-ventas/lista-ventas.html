@@ -1,0 +1,101 @@
+<div class="ventas-container">
+  <div class="page-header">
+    <h1>📋 Listado de Ventas</h1>
+    <a routerLink="/ventas/nueva" class="btn-primary">+ Nueva Venta</a>
+  </div>
+
+  <!-- Error -->
+  <div class="alert alert-error" *ngIf="errorMsg">
+    {{ errorMsg }}
+    <button class="btn-retry" (click)="cargarVentas()">Reintentar</button>
+  </div>
+
+  <!-- Cargando -->
+  <div class="loading" *ngIf="cargando">Cargando ventas...</div>
+
+  <ng-container *ngIf="!cargando && !errorMsg">
+
+    <!-- Buscador -->
+    <div class="toolbar">
+      <input
+        type="text"
+        [(ngModel)]="busqueda"
+        (ngModelChange)="filtrar()"
+        placeholder="🔍 Buscar por cliente, fecha o N° venta..."
+        class="input-busqueda">
+      <span class="resultado-count">{{ ventasFiltradas.length }} venta(s)</span>
+    </div>
+
+    <!-- Tabla principal -->
+    <table class="tabla-ventas" *ngIf="ventasFiltradas.length > 0; else sinVentas">
+      <thead>
+        <tr>
+          <th (click)="ordenarPor('id')" class="sortable">N° {{ getIconoOrden('id') }}</th>
+          <th (click)="ordenarPor('nombreCliente')" class="sortable">Cliente {{ getIconoOrden('nombreCliente') }}</th>
+          <th (click)="ordenarPor('fecha')" class="sortable">Fecha {{ getIconoOrden('fecha') }}</th>
+          <th class="text-center">Productos</th>
+          <th (click)="ordenarPor('total')" class="sortable text-right">Total {{ getIconoOrden('total') }}</th>
+          <th class="text-center">Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let v of ventasFiltradas" [class.fila-activa]="ventaDetalle?.id === v.id">
+          <td><span class="badge-id">#{{ v.id }}</span></td>
+          <td>{{ v.nombreCliente }}</td>
+          <td>{{ v.fecha }}</td>
+          <td class="text-center">
+            <span class="badge-productos">{{ v.detalles.length }}</span>
+          </td>
+          <td class="text-right total-cell">${{ v.total.toFixed(2) }}</td>
+          <td class="text-center">
+            <button class="btn-detalle" (click)="verDetalle(v)">
+              {{ ventaDetalle?.id === v.id ? 'Ocultar' : 'Ver' }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Detalle expandido -->
+    <div class="detalle-card" *ngIf="ventaDetalle">
+      <div class="detalle-header">
+        <h3>Detalle — Venta #{{ ventaDetalle.id }}</h3>
+        <button class="btn-close" (click)="cerrarDetalle()">✕</button>
+      </div>
+      <p><strong>Cliente:</strong> {{ ventaDetalle.nombreCliente }}</p>
+      <p><strong>Fecha:</strong> {{ ventaDetalle.fecha }}</p>
+      <table class="tabla-detalle">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th class="text-center">Cantidad</th>
+            <th class="text-right">Precio Unit.</th>
+            <th class="text-right">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of ventaDetalle.detalles">
+            <td>{{ d.nombreProducto }}</td>
+            <td class="text-center">{{ d.cantidad }}</td>
+            <td class="text-right">${{ d.precio.toFixed(2) }}</td>
+            <td class="text-right">${{ d.subtotal.toFixed(2) }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="total-label">TOTAL</td>
+            <td class="total-value">${{ ventaDetalle.total.toFixed(2) }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <!-- Sin resultados -->
+    <ng-template #sinVentas>
+      <p class="empty-msg">
+        {{ busqueda ? 'No se encontraron ventas con ese criterio.' : 'No hay ventas registradas aún.' }}
+      </p>
+    </ng-template>
+
+  </ng-container>
+</div>
