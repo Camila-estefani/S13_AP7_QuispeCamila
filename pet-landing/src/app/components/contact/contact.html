@@ -1,66 +1,134 @@
 <section id="contacto" class="contact">
   <div class="contact-card">
-    <h2>Formulario de contacto</h2>
-    <p class="subtitle">Completa tus datos para enviarte una propuesta personalizada.</p>
-    <form (ngSubmit)="onSubmit()" #contactForm="ngForm">
+    <h2>Agenda tu cita veterinaria</h2>
+    <p class="subtitle">Completa los datos de tu mascota y selecciona la fecha para tu atención.</p>
+
+    <form [formGroup]="citaForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="grid two-cols">
         <div>
-          <label for="name">Nombre</label>
-          <input id="name" name="name" type="text" [(ngModel)]="name" required />
+          <label for="ownerName">Nombre del dueño</label>
+          <input id="ownerName" formControlName="ownerName" type="text" />
+          @if (f['ownerName'].invalid && f['ownerName'].touched) {
+            <p class="error">El nombre del dueño es obligatorio y debe tener al menos 3 caracteres.</p>
+          }
         </div>
         <div>
-          <label for="lastname">Apellido</label>
-          <input id="lastname" name="lastname" type="text" [(ngModel)]="lastname" required />
+          <label for="petName">Nombre de la mascota</label>
+          <input id="petName" formControlName="petName" type="text" />
+          @if (f['petName'].invalid && f['petName'].touched) {
+            <p class="error">El nombre de la mascota es obligatorio.</p>
+          }
         </div>
       </div>
 
       <div class="grid two-cols">
         <div>
-          <label for="email">Correo</label>
-          <input id="email" name="email" type="email" [(ngModel)]="email" required />
+          <label for="email">Correo electrónico</label>
+          <input id="email" formControlName="email" type="email" />
+          @if (f['email'].invalid && f['email'].touched) {
+            <p class="error">Ingresa un correo válido.</p>
+          }
         </div>
         <div>
-          <label for="phone">Telefono</label>
-          <input id="phone" name="phone" type="tel" [(ngModel)]="phone" required />
+          <label for="phone">Teléfono</label>
+          <input id="phone" formControlName="phone" type="tel" />
+          @if (f['phone'].invalid && f['phone'].touched) {
+            <p class="error">El teléfono debe tener exactamente 9 dígitos.</p>
+          }
         </div>
       </div>
 
       <div class="grid two-cols">
         <div>
           <label for="petType">Tipo de mascota</label>
-          <input id="petType" name="petType" type="text" [(ngModel)]="petType" required />
+          <select id="petType" formControlName="petType">
+            <option value="">Selecciona un tipo</option>
+            <option value="Perro">Perro</option>
+            <option value="Gato">Gato</option>
+            <option value="Ave">Ave</option>
+            <option value="Otro">Otro</option>
+          </select>
+          @if (f['petType'].invalid && f['petType'].touched) {
+            <p class="error">Selecciona el tipo de mascota.</p>
+          }
         </div>
         <div>
           <label for="service">Servicio</label>
-          <select id="service" name="service" [(ngModel)]="service" required>
-            <option value="">Selecciona una opcion</option>
+          <select id="service" formControlName="service">
+            <option value="">Selecciona un servicio</option>
             <option value="Consulta veterinaria">Consulta veterinaria</option>
-            <option value="Grooming premium">Grooming premium</option>
-            <option value="Entrenamiento y paseo">Entrenamiento y paseo</option>
-            <option value="Hotel de dia">Hotel de dia</option>
+            <option value="Grooming">Grooming</option>
+            <option value="Vacunación">Vacunación</option>
+            <option value="Emergencia">Emergencia</option>
           </select>
+          @if (f['service'].invalid && f['service'].touched) {
+            <p class="error">Selecciona el servicio requerido.</p>
+          }
         </div>
       </div>
 
-      <label for="details">Cuidados o comentarios</label>
+      <div class="grid two-cols">
+        <div>
+          <label for="appointmentDate">Fecha de la cita</label>
+          <input id="appointmentDate" formControlName="appointmentDate" type="date" />
+          @if (f['appointmentDate'].invalid && f['appointmentDate'].touched) {
+            <p class="error">Selecciona una fecha válida y no anterior a hoy.</p>
+          }
+        </div>
+        <div>
+          <label for="appointmentTime">Hora</label>
+          <input id="appointmentTime" formControlName="appointmentTime" type="time" />
+          @if (f['appointmentTime'].invalid && f['appointmentTime'].touched) {
+            <p class="error">Selecciona la hora de la cita.</p>
+          }
+        </div>
+      </div>
+
+      <label for="notes">Comentarios adicionales</label>
       <textarea
-        id="details"
-        name="details"
+        id="notes"
+        formControlName="notes"
         rows="4"
-        [(ngModel)]="details"
-        placeholder="Ejemplo: mi perrito tiene piel sensible y necesita productos hipoalergenicos."
+        placeholder="Incluye datos importantes sobre la mascota o síntomas."
       ></textarea>
 
-      <label class="terms-check">
-        <input type="checkbox" name="acceptTerms" [(ngModel)]="acceptTerms" required />
-        Acepto ser contactado para recibir informacion del servicio.
-      </label>
-
-      <button type="submit" [disabled]="contactForm.invalid">Enviar solicitud</button>
+      <div class="form-actions">
+        <button type="submit" [disabled]="citaForm.invalid">
+          @if (editandoId) { Actualizar cita } @else { Agregar cita }
+        </button>
+        @if (editandoId) {
+          <button type="button" class="btn-secondary" (click)="resetForm()">Cancelar edición</button>
+        }
+      </div>
     </form>
+
+    @if (message) {
+      <p class="success-message">{{ message }}</p>
+    }
   </div>
 
-  @if (sentMessage) {
-    <p class="success-message">{{ sentMessage }}</p>
-  }
+  <div class="appointment-list">
+    <h3>Mis citas</h3>
+    @if (citas.length === 0) {
+      <p class="empty-msg">No hay citas agendadas aún.</p>
+    } @else {
+      <div class="appointment-card" *ngFor="let cita of citas">
+        <div class="appointment-header">
+          <strong>{{ cita.petName }} • {{ cita.petType }}</strong>
+          <span>{{ cita.appointmentDate }} • {{ cita.appointmentTime }}</span>
+        </div>
+        <p><strong>Dueño:</strong> {{ cita.ownerName }}</p>
+        <p><strong>Teléfono:</strong> {{ cita.phone }}</p>
+        <p><strong>Correo:</strong> {{ cita.email }}</p>
+        <p><strong>Servicio:</strong> {{ cita.service }}</p>
+        @if (cita.notes) {
+          <p><strong>Notas:</strong> {{ cita.notes }}</p>
+        }
+        <div class="appointment-actions">
+          <button type="button" class="btn-edit" (click)="onEdit(cita)">Editar</button>
+          <button type="button" class="btn-delete" (click)="onDelete(cita.id)">Eliminar</button>
+        </div>
+      </div>
+    }
+  </div>
 </section>

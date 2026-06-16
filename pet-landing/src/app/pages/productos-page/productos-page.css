@@ -1,0 +1,206 @@
+.page-hero {
+  padding: 3rem 2rem 1.5rem;
+  text-align: center;
+}
+.page-hero h1 {
+  font-size: 2.2rem;
+  color: #6d28d9;
+  margin-bottom: 0.6rem;
+}
+.page-hero p {
+  max-width: 620px;
+  margin: 0 auto;
+  color: #475569;
+  font-size: 1.05rem;
+}
+
+/* Filtros */
+.categorias-section {
+  padding: 0 2rem 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+.categorias-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+.btn-categoria {
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  border: 1.5px solid #c4b5fd;
+  background: white;
+  color: #6d28d9;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-categoria:hover  { background: #ede9fe; }
+.btn-categoria.activa { background: #7c3aed; color: white; border-color: #7c3aed; }
+
+.resultados-info {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+/* Grid */
+.productos-section {
+  padding: 0 2rem 3.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.2rem;
+}
+
+.producto-card {
+  background: white;
+  border: 1px solid #ede9fe;
+  border-radius: 18px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  animation: fadeUp 0.5s ease both;
+}
+.producto-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(124, 58, 237, 0.15);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.producto-emoji {
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+.badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: linear-gradient(120deg, #f9a8d4, #c4b5fd);
+  color: #581c87;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+.producto-body {
+  flex: 1;
+}
+.producto-categoria {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #a855f7;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.producto-body h3 {
+  margin: 0.3rem 0 0.4rem;
+  color: #3b0764;
+  font-size: 1rem;
+}
+.producto-body p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.producto-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+.precio {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #7c3aed;
+}
+.btn-comprar {
+  background: linear-gradient(120deg, #a855f7, #7c3aed);
+  color: white;
+  text-decoration: none;
+  padding: 0.45rem 1rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  transition: opacity 0.2s ease;
+}
+.btn-comprar:hover { opacity: 0.85; }
+
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+/* CTA inferior */
+.cta-bottom {
+  padding: 0 2rem 3.5rem;
+}
+.cta-card {
+  max-width: 680px;
+  margin: 0 auto;
+  background: linear-gradient(120deg, #f5f3ff, #fdf2f8);
+  border: 1px solid #ddd6fe;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(124, 58, 237, 0.1);
+}
+.cta-card h2 { color: #6d28d9; margin-bottom: 0.5rem; }
+.cta-card p  { color: #475569; margin-bottom: 1.5rem; }
+.cta-btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  background: linear-gradient(120deg, #a855f7, #7c3aed);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: transform 0.2s;
+}
+.btn-primary:hover { transform: translateY(-2px); }
+.btn-secondary {
+  background: white;
+  color: #7c3aed;
+  border: 1.5px solid #c4b5fd;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: background 0.2s;
+}
+.btn-secondary:hover { background: #f5f3ff; }
+
+@media (max-width: 768px) {
+  .productos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 0.9rem;
+  }
+  .cta-btns { flex-direction: column; align-items: center; }
+}

@@ -1,0 +1,58 @@
+<section class="page-hero">
+  <h1>🛍️ Productos para Mascotas</h1>
+  <p>Encuentra todo lo que tu compañero peludo necesita: alimentación, accesorios, higiene y juguetes.</p>
+</section>
+
+<!-- Filtro por categoría -->
+<section class="categorias-section">
+  <div class="categorias-container">
+    <button
+      *ngFor="let cat of categorias"
+      class="btn-categoria"
+      [class.activa]="categoriaActiva === cat"
+      (click)="cambiarCategoria(cat)">
+      {{ cat }}
+    </button>
+  </div>
+  <p class="resultados-info">
+    Mostrando <strong>{{ productosFiltrados.length }}</strong> producto(s)
+    <span *ngIf="categoriaActiva !== 'Todos'"> en <em>{{ categoriaActiva }}</em></span>
+  </p>
+</section>
+
+<!-- Grid de productos -->
+<section class="productos-section">
+  <div class="productos-grid">
+    <article class="producto-card" *ngFor="let p of productosFiltrados">
+      <div class="producto-emoji">{{ p.emoji }}</div>
+      <span class="badge" *ngIf="p.badge">{{ p.badge }}</span>
+      <div class="producto-body">
+        <span class="producto-categoria">{{ p.categoria }}</span>
+        <h3>{{ p.nombre }}</h3>
+        <p>{{ p.descripcion }}</p>
+      </div>
+      <div class="producto-footer">
+        <span class="precio">${{ p.precio.toFixed(2) }}</span>
+        <!-- RouterLink navega a /ventas/nueva sin recargar la página -->
+        <a routerLink="/ventas/nueva" class="btn-comprar">Comprar</a>
+      </div>
+    </article>
+  </div>
+
+  <div class="empty-state" *ngIf="productosFiltrados.length === 0">
+    <p>No hay productos en esta categoría.</p>
+  </div>
+</section>
+
+<!-- CTA inferior -->
+<section class="cta-bottom">
+  <div class="cta-card">
+    <h2>¿Listo para registrar una venta?</h2>
+    <p>Gestiona las ventas de productos directamente desde el sistema.</p>
+    <div class="cta-btns">
+      <!-- RouterLink: navegación declarativa entre rutas sin recargar el navegador -->
+      <a routerLink="/ventas/nueva" class="btn-primary">+ Nueva Venta</a>
+      <a routerLink="/ventas" class="btn-secondary">Ver Historial</a>
+    </div>
+  </div>
+</section>

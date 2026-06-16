@@ -108,11 +108,94 @@ button:disabled {
   cursor: not-allowed;
 }
 
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn-secondary {
+  background: #e0e7ff;
+  color: #3730a3;
+}
+
+.error {
+  margin: 0.4rem 0 0;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+
 .success-message {
   text-align: center;
   margin-top: 1rem;
   font-weight: 700;
-  color: #7e22ce;
+  color: #166534;
+}
+
+.appointment-list {
+  max-width: 860px;
+  margin: 2rem auto 0;
+}
+
+.appointment-list h3 {
+  margin-bottom: 1rem;
+  color: #581c87;
+}
+
+.appointment-card {
+  background: #ffffff;
+  border: 1px solid #ddd6fe;
+  border-radius: 18px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 12px 24px rgba(167, 139, 250, 0.08);
+}
+
+.appointment-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  color: #4c1d95;
+}
+
+.appointment-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.btn-edit,
+.btn-delete {
+  border: none;
+  border-radius: 999px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-edit {
+  background: #c7d2fe;
+  color: #3730a3;
+}
+
+.btn-delete {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+  transform: translateY(-1px);
+}
+
+.empty-msg {
+  text-align: center;
+  color: #6b7280;
+  font-style: italic;
 }
 
 @keyframes fadeInContact {
