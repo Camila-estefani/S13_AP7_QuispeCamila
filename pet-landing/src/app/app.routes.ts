@@ -1,27 +1,30 @@
 /**
- * ROUTING EN ANGULAR — Conceptos aplicados
- * ─────────────────────────────────────────
- * Routes: arreglo que mapea rutas (path) a componentes.
- * RouterLink: directiva para navegar entre rutas en la plantilla (sin recargar el navegador).
- * RouterOutlet: placeholder en app.html donde Angular renderiza el componente activo.
- * RouterLinkActive: aplica una clase CSS cuando la ruta está activa.
- * provideRouter(routes): registra las rutas en el sistema de inyección de Angular (app.config.ts).
+ * ROUTING CON AUTENTICACIÓN
+ * ──────────────────────────────────────────────────────────────
+ * canActivate: [authGuard]  → protege la ruta; si no hay sesión redirige a /login.
+ * { path: 'login' }         → ruta pública (no protegida).
+ * { path: '' }              → ruta raíz protegida con authGuard.
+ * { path: '**' }            → wildcard, siempre al final, muestra la página 404.
  */
 
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
-// Páginas principales
+// Páginas de autenticación (pública)
+import { LoginPage }     from './pages/login-page/login-page';
+
+// Páginas principales (protegidas)
 import { Home }          from './pages/home/home';
 import { ServicesPage }  from './pages/services-page/services-page';
 import { ProductosPage } from './pages/productos-page/productos-page';
 import { ContactPage }   from './pages/contact-page/contact-page';
 
-// Páginas adicionales
+// Páginas adicionales (protegidas)
 import { RopaPage }      from './pages/ropa-page/ropa-page';
 import { ReviewsPage }   from './pages/reviews-page/reviews-page';
 import { GestionPage }   from './pages/gestion-page/gestion-page';
 
-// Módulo de ventas (feature module)
+// Módulo de ventas (protegido)
 import { ListaVentasPage } from './features/ventas/pages/lista-ventas/lista-ventas';
 import { NuevaVentaPage }  from './features/ventas/pages/nueva-venta/nueva-venta';
 
@@ -29,24 +32,22 @@ import { NuevaVentaPage }  from './features/ventas/pages/nueva-venta/nueva-venta
 import { NotFoundPage } from './pages/not-found/not-found';
 
 export const routes: Routes = [
-  // Ruta raíz — muestra el componente Home en "/"
-  { path: '',           component: Home,          title: 'PetCare+ | Inicio' },
 
-  // Rutas principales del menú de navegación
-  { path: 'servicios',  component: ServicesPage,  title: 'PetCare+ | Servicios' },
-  { path: 'productos',  component: ProductosPage, title: 'PetCare+ | Productos' },
-  { path: 'contacto',   component: ContactPage,   title: 'PetCare+ | Contacto' },
+  // ── Ruta pública — no requiere autenticación ─────────────
+  { path: 'login', component: LoginPage, title: 'PetCare+ | Iniciar Sesión' },
 
-  // Rutas adicionales
-  { path: 'ropa',       component: RopaPage,      title: 'PetCare+ | Ropa' },
-  { path: 'reseñas',    component: ReviewsPage,   title: 'PetCare+ | Reseñas' },
-  { path: 'gestion',    component: GestionPage,   title: 'PetCare+ | Gestión' },
+  // ── Rutas protegidas — canActivate: [authGuard] ──────────
+  { path: '',          component: Home,          canActivate: [authGuard], title: 'PetCare+ | Inicio' },
+  { path: 'servicios', component: ServicesPage,  canActivate: [authGuard], title: 'PetCare+ | Servicios' },
+  { path: 'productos', component: ProductosPage, canActivate: [authGuard], title: 'PetCare+ | Productos' },
+  { path: 'contacto',  component: ContactPage,   canActivate: [authGuard], title: 'PetCare+ | Contacto' },
+  { path: 'ropa',      component: RopaPage,      canActivate: [authGuard], title: 'PetCare+ | Ropa' },
+  { path: 'reseñas',   component: ReviewsPage,   canActivate: [authGuard], title: 'PetCare+ | Reseñas' },
+  { path: 'gestion',   component: GestionPage,   canActivate: [authGuard], title: 'PetCare+ | Gestión' },
 
-  // Rutas del módulo de ventas
-  { path: 'ventas',        component: ListaVentasPage, title: 'PetCare+ | Ventas' },
-  { path: 'ventas/nueva',  component: NuevaVentaPage,  title: 'PetCare+ | Nueva Venta' },
+  { path: 'ventas',       component: ListaVentasPage, canActivate: [authGuard], title: 'PetCare+ | Ventas' },
+  { path: 'ventas/nueva', component: NuevaVentaPage,  canActivate: [authGuard], title: 'PetCare+ | Nueva Venta' },
 
-  // Wildcard: cualquier ruta no definida redirige a NotFoundPage
-  // El "**" debe ir siempre al final del arreglo de rutas
-  { path: '**', component: NotFoundPage, title: 'PetCare+ | Página no encontrada' }
+  // ── Wildcard — siempre al final ───────────────────────────
+  { path: '**', component: NotFoundPage, title: 'PetCare+ | No encontrada' }
 ];

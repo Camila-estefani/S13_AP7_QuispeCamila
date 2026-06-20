@@ -1,0 +1,187 @@
+/* ── Fondo de la pantalla completa ── */
+.login-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #f5f3ff 0%, #fdf2f8 50%, #ede9fe 100%);
+}
+
+/* ── Tarjeta central ── */
+.login-card {
+  background: white;
+  border: 1px solid #ddd6fe;
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 50px rgba(124, 58, 237, 0.15);
+  animation: popIn 0.45s ease;
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Header de la tarjeta ── */
+.login-header {
+  text-align: center;
+  margin-bottom: 1.8rem;
+}
+.login-logo {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.login-header h1 {
+  margin: 0 0 0.3rem;
+  font-size: 1.8rem;
+  color: #6d28d9;
+  font-weight: 800;
+}
+.login-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+/* ── Alerta de error global ── */
+.alert-error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #b91c1c;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+  animation: shake 0.35s ease;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%       { transform: translateX(-6px); }
+  75%       { transform: translateX(6px); }
+}
+
+/* ── Campos ── */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.1rem;
+}
+.field-group label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #4b5563;
+  margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+input:focus           { border-color: #a855f7; box-shadow: 0 0 0 3px rgba(168,85,247,0.15); }
+.input-error          { border-color: #ef4444 !important; }
+.input-valid          { border-color: #22c55e !important; }
+
+/* ── Contenedor de contraseña con ojo ── */
+.pass-wrapper {
+  position: relative;
+}
+.pass-wrapper input {
+  padding-right: 3rem;
+}
+.btn-toggle-pass {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 0;
+  line-height: 1;
+}
+
+/* ── Mensajes de error por campo ── */
+.error-msgs {
+  margin-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.error-msgs span {
+  font-size: 0.8rem;
+  color: #dc2626;
+}
+
+/* ── Botón principal ── */
+.btn-login {
+  width: 100%;
+  padding: 0.85rem;
+  background: linear-gradient(120deg, #a855f7, #7c3aed);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+  margin-top: 0.5rem;
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}
+.btn-login:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+.btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.spinner { display: inline-flex; align-items: center; gap: 6px; }
+
+/* ── Demo box ── */
+.demo-box {
+  margin-top: 1.8rem;
+  background: #f5f3ff;
+  border: 1px dashed #c4b5fd;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+}
+.demo-box p {
+  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+.demo-box code {
+  display: block;
+  font-size: 0.85rem;
+  color: #5b21b6;
+  font-family: monospace;
+  margin-bottom: 0.7rem;
+  background: #ede9fe;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+}
+.btn-demo {
+  background: transparent;
+  border: 1.5px solid #a855f7;
+  color: #7c3aed;
+  border-radius: 8px;
+  padding: 0.45rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-demo:hover { background: #ede9fe; }

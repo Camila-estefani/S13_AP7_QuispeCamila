@@ -1,25 +1,16 @@
-<!--
-  MENÚ DE NAVEGACIÓN — Conceptos de Routing aplicados
-  ─────────────────────────────────────────────────────
-  routerLink         : navega a la ruta indicada sin recargar el navegador (SPA).
-  routerLinkActive   : aplica la clase CSS "active-link" cuando la ruta está activa.
-  [routerLinkActiveOptions]="{ exact: true }" : solo marca como activo si la ruta coincide exactamente
-                                                (evita que "/" esté siempre activo).
--->
 <header class="header">
   <a class="logo" routerLink="/">🐾 PetCare+</a>
 
   <!-- Botón hamburguesa (mobile) -->
-  <button class="hamburger" (click)="toggleMenu()" [attr.aria-expanded]="menuAbierto" aria-label="Menú">
+  <button class="hamburger" (click)="toggleMenu()"
+    [attr.aria-expanded]="menuAbierto" aria-label="Menú">
     <span></span><span></span><span></span>
   </button>
 
   <nav class="nav" [class.nav-open]="menuAbierto" (click)="cerrarMenu()">
-    <!-- routerLink="/" con exact:true para que no quede activo en sub-rutas -->
     <a routerLink="/"
        [routerLinkActiveOptions]="{ exact: true }"
        routerLinkActive="active-link">Inicio</a>
-
     <a routerLink="/servicios"  routerLinkActive="active-link">Servicios</a>
     <a routerLink="/productos"  routerLinkActive="active-link">Productos</a>
     <a routerLink="/ropa"       routerLinkActive="active-link">Ropa</a>
@@ -28,4 +19,12 @@
     <a routerLink="/gestion"    routerLinkActive="active-link">Gestión</a>
     <a routerLink="/ventas"     routerLinkActive="active-link" class="nav-ventas">Ventas</a>
   </nav>
+
+  <!-- Sección de usuario autenticado -->
+  <div class="user-section" *ngIf="estaAutenticado">
+    <span class="user-name">👤 {{ usuario?.nombre }}</span>
+    <button class="btn-logout" (click)="logout()" title="Cerrar sesión">
+      Cerrar Sesión
+    </button>
+  </div>
 </header>

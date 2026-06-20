@@ -1,7 +1,9 @@
 <div class="page-container">
-  <app-header></app-header>
+  <!-- Header y footer solo se muestran cuando el usuario está autenticado -->
+  <app-header *ngIf="estaAutenticado"></app-header>
   <main class="page-main">
+    <!-- RouterOutlet: aquí Angular inserta el componente de la ruta activa -->
     <router-outlet></router-outlet>
   </main>
-  <app-footer></app-footer>
+  <app-footer *ngIf="estaAutenticado"></app-footer>
 </div>
